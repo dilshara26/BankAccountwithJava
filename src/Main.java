@@ -8,17 +8,28 @@ public class Main {
         umeshSavingAccount.deposit(2000);
         System.out.println("Umesh balance");
         System.out.println(umeshSavingAccount.balance);
+
         BankAccount erandiFDAccount = new BankAccount("344353","fd",erandi.name, erandi.birthdate, erandi.address);
         erandiFDAccount.deposit(1000);
         System.out.println("Erandi balance");
         System.out.println(erandiFDAccount.balance);
-        erandiFDAccount.withdrawal(500);
+        erandiFDAccount.withdrawal(5000);
 
         System.out.println("-----------------------------");
         System.out.println("Umesh balance");
         System.out.println(umeshSavingAccount.balance);
         System.out.println("Erandi balance");
         System.out.println(erandiFDAccount.getBalance());
+
+       // calculate total value after 2years for umesh's acc  - (PART 2)
+        int year = 1;
+        double totalValue = umeshSavingAccount.calculateTotalValue(year);
+        System.out.println("Total value after"+ year+ "years for umesh's accc:" + totalValue);
+
+        // while loop
+        System.out.println("--- Multiple Transaction for Umesh---");
+        umeshSavingAccount.withDraw();
+
 
     }
 }
