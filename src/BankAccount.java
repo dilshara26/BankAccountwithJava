@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BankAccount {
@@ -8,6 +9,11 @@ public class BankAccount {
     public String birthdate;
     public String address;
 
+    //    global variables
+    public ArrayList<Integer> deposits;
+    public ArrayList<Integer> withdrawals;
+
+
     public BankAccount(String accountNumber, String accountType, String name, String birthdate, String address) {
         this.name = name;
         this.address = address;
@@ -15,6 +21,9 @@ public class BankAccount {
         this.accountNumber = accountNumber;
         this.balance = 0;
         this.accountType = accountType;
+//        initialization
+        this.deposits = new ArrayList<>();
+        this.withdrawals = new ArrayList<>();
     }
 
     public void withdrawal(int amount) {
@@ -42,12 +51,34 @@ public class BankAccount {
             amount =scr.nextInt();
         }
         this.balance -= amount;
+        withdrawals.add(amount);
         System.out.println("Withdrawl sucessfull.Remaing balance:" + this.balance);
 
     }
     public void deposit(int amount) {
+        deposits.add(amount);
         this.balance = this.balance + amount;
+        System.out.println("Deposit array :" + deposits);
+
     }
+
+    public void printAllDeposits(){
+        for (int i = 0; i < deposits.size() ; i++) {
+            System.out.println(deposits.get(i));
+
+        }
+    }
+
+
+    
+    public void printAllDepositsFromEnd(){
+        for (int i = deposits.size() -1; i >= 0 ; i--) {
+            System.out.println(deposits.get(i));
+
+        }
+    }
+
+
 
     public int getBalance() {
         return this.balance;
