@@ -25,6 +25,10 @@ public class BankAccount {
         this.deposits = new ArrayList<>();
         this.withdrawals = new ArrayList<>();
     }
+    public String getAccountNumber(){
+        return this.accountNumber;
+    }
+
 
     public void withdrawal(int amount) {
 //        check the balance. if the amount requesting to withdraw is higher than the balance, then print cannot withdraw

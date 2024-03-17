@@ -1,18 +1,11 @@
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class User {
-    private String name;
-    public  String birthdate;
-    public String address;
+public class User extends Person {
 
     public ArrayList<BankAccount> bankAccounts = new ArrayList<>();
-
-
-    public User(String name, String birthdate, String address){
-        this.name = name;
-        this.address = address;
-        this.birthdate = birthdate;
+    public User(String fullname, String birthday, String addres){
+        super(fullname,birthday, addres );
     }
 
     public String getName(){
@@ -24,20 +17,26 @@ public class User {
     }
 
     public void createBankAcc(String accNumber, String acctype){
-        BankAccount BA = new BankAccount(accNumber,acctype,name , birthdate,address);
-        bankAccounts.add(BA);
-        System.out.println("BANK ACC  created successfully for :" + name);
-    }
-
-    public void depositedAccNumber(String accNumber, int amount){
-
         for (int i = 0; i < bankAccounts.size() ; i++) {
-            if(Objects.equals(bankAccounts.get(i).accountNumber, accNumber)){
-                bankAccounts.get(i).deposit(amount);
+            if(Objects.equals(accNumber, bankAccounts.get(i).getAccountNumber())){
+                System.out.println("This number already exist");
+                return;
             }
 
         }
+        BankAccount BA = new BankAccount(accNumber,acctype,name , birthdate,address);
+        bankAccounts.add(BA);
+        System.out.println("BANK ACC  created successfully for :" + name);
 
+    }
+
+    public void depositAccNumber(String accNumber, int amount){
+
+        for (int i = 0; i < bankAccounts.size() ; i++) {
+            if(Objects.equals(accNumber, bankAccounts.get(i).getAccountNumber())){
+                bankAccounts.get(i).deposit(amount);
+            }
+        }
     }
 
     public int getTotalBalance(){
@@ -45,7 +44,6 @@ public class User {
         for (int i = 0; i <bankAccounts.size() ; i++) {
             int accBalance = bankAccounts.get(i).getBalance();
             totalBalance += accBalance;
-
         }
         return totalBalance;
     }
